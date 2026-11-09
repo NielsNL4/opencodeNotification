@@ -1,0 +1,4 @@
+node_modules/
+dist/
+*.vsix
+extensions/local/bridge/

@@ -1,0 +1,48 @@
+{
+  "name": "opencode-notifications",
+  "displayName": "OpenCode Notifications",
+  "description": "OpenCode sounds and terminal status. Standalone on local Linux; Remote SSH also requires OpenCode Notification Bridge on the SSH host.",
+  "version": "0.2.1",
+  "publisher": "Nyren",
+  "license": "MIT",
+  "engines": { "vscode": "^1.96.0" },
+  "categories": ["Other"],
+  "keywords": ["opencode", "notifications", "sound", "remote-ssh", "terminal"],
+  "extensionKind": ["ui"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./extension.js",
+  "capabilities": { "untrustedWorkspaces": { "supported": false } },
+  "contributes": {
+    "commands": [
+      { "command": "opencodeNotifications.installPlugin", "title": "OpenCode Notifications: Install OpenCode Plugin on This Host" },
+      { "command": "opencodeNotifications.configureTitles", "title": "OpenCode Notifications: Enable Terminal Status Titles" },
+      { "command": "opencodeNotifications.chooseCompletionSound", "title": "OpenCode Notifications: Choose Completion Sound" },
+      { "command": "opencodeNotifications.chooseAttentionSound", "title": "OpenCode Notifications: Choose Attention Sound" },
+      { "command": "opencodeNotifications.testCompletionSound", "title": "OpenCode Notifications: Test Completion Sound" },
+      { "command": "opencodeNotifications.testAttentionSound", "title": "OpenCode Notifications: Test Attention Sound" },
+      { "command": "opencodeNotifications.toggleSounds", "title": "OpenCode Notifications: Toggle Sounds" },
+      { "command": "opencodeNotifications.settings", "title": "OpenCode Notifications: Open Settings" },
+      { "command": "opencodeNotifications.showLog", "title": "OpenCode Notifications: Show Log" }
+    ],
+    "menus": {
+      "commandPalette": [
+        { "command": "opencodeNotifications.installPlugin", "when": "!remoteName" },
+        { "command": "opencodeNotifications.configureTitles", "when": "!remoteName" }
+      ]
+    },
+    "configuration": {
+      "title": "OpenCode Notifications",
+      "properties": {
+        "opencodeNotifications.soundsEnabled": { "type": "boolean", "default": true, "scope": "application", "description": "Enable automatic sounds. Toggle using OpenCode Notifications: Toggle Sounds." },
+        "opencodeNotifications.volume": { "type": "integer", "default": 10, "minimum": 1, "maximum": 10, "scope": "application", "description": "Shared sound volume from 1 (quiet) to 10 (full volume). Used when a sound's own volume is unset or null, including previews and tests." },
+        "opencodeNotifications.completion.enabled": { "type": "boolean", "default": true, "scope": "application", "description": "Play a local sound when a prompt completes." },
+        "opencodeNotifications.completion.path": { "type": "string", "default": "", "scope": "application", "description": "Absolute local path to your completion sound. Empty uses the built-in chime." },
+        "opencodeNotifications.completion.volume": { "type": ["integer", "null"], "default": null, "minimum": 1, "maximum": 10, "scope": "application", "description": "Completion sound volume from 1 (quiet) to 10 (full volume), including previews and tests. Unset or null uses the shared volume setting." },
+        "opencodeNotifications.attention.enabled": { "type": "boolean", "default": true, "scope": "application", "description": "Play a local sound for a new question or permission request." },
+        "opencodeNotifications.attention.path": { "type": "string", "default": "", "scope": "application", "description": "Absolute local path to your attention sound. Empty uses the built-in attention chime." },
+        "opencodeNotifications.attention.volume": { "type": ["integer", "null"], "default": null, "minimum": 1, "maximum": 10, "scope": "application", "description": "Attention sound volume from 1 (quiet) to 10 (full volume), including previews and tests. Unset or null uses the shared volume setting." },
+        "opencodeNotifications.showNotifications": { "type": "boolean", "default": true, "scope": "application", "description": "Show a VS Code notification when a prompt completes, needs input, or fails." }
+      }
+    }
+  }
+}

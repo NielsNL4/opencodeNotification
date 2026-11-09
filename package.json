@@ -1,0 +1,15 @@
+{
+  "name": "opencode-notification-workspace",
+  "private": true,
+  "scripts": {
+    "check": "node scripts/sync-bridge.js && tsc -p jsconfig.json && node --check extensions/bridge/plugin/opencode-notifications.mjs",
+    "test": "node --test test/*.test.js",
+    "package": "npm run check && npm test && node scripts/package.js"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/vscode": "^1.96.0",
+    "@vscode/vsce": "^3.0.0",
+    "typescript": "^5.7.0"
+  }
+}

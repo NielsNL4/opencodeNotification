@@ -1,0 +1,27 @@
+{
+  "name": "opencode-notification-bridge",
+  "displayName": "OpenCode Notification Bridge",
+  "description": "Remote SSH companion for OpenCode Notifications. Install on the SSH host; the main extension is also required locally. Not needed for local use.",
+  "version": "0.2.1",
+  "publisher": "Nyren",
+  "license": "MIT",
+  "engines": { "vscode": "^1.96.0" },
+  "categories": ["Other"],
+  "keywords": ["opencode", "notifications", "remote-ssh", "terminal"],
+  "extensionKind": ["workspace"],
+  "activationEvents": ["onStartupFinished", "onCommand:opencodeNotificationBridge.poll"],
+  "main": "./extension.js",
+  "capabilities": { "untrustedWorkspaces": { "supported": false } },
+  "contributes": {
+    "commands": [
+      { "command": "opencodeNotificationBridge.installPlugin", "title": "OpenCode Notifications: Install OpenCode Plugin on This Host" },
+      { "command": "opencodeNotificationBridge.configureTitles", "title": "OpenCode Notifications: Enable Terminal Status Titles" }
+    ],
+    "menus": {
+      "commandPalette": [
+        { "command": "opencodeNotificationBridge.installPlugin", "when": "remoteName" },
+        { "command": "opencodeNotificationBridge.configureTitles", "when": "remoteName" }
+      ]
+    }
+  }
+}
