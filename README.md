@@ -30,7 +30,7 @@ Visible terminal status and **two independent custom local sounds** for OpenCode
 
 WAV is the most portable audio format. Linux MP3/M4A playback may require `ffplay`; the player falls back automatically when another player cannot decode a file.
 
-## Install on your own machine (Linux)
+## Install on your own machine 
 
 1. Install **OpenCode Notifications** from the VS Code Marketplace. **You do not need OpenCode Notification Bridge for local use**: the main extension includes local event detection.
 2. Run **Developer: Reload Window**.
